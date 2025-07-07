@@ -105,7 +105,7 @@ This project uses **Azure Key Vault** to securely store the Databricks Personal 
 
 ### Required GitHub Secrets
 
-- `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`: Azure service principal credentials
+- `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`: Azure service principal credentials (OIDC, no client secret needed)
 - `KEY_VAULT_NAME`: The name of the Key Vault created by this project
 
 ### How to Use with Key Vault
