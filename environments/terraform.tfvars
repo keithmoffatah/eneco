@@ -9,3 +9,4 @@ data_engineer_users    = ["de1@example.com", "de2@example.com"]
 data_scientist_users   = ["ds1@example.com"]
 
 databricks_token       = "YOUR_DATABRICKS_PAT"
+key_vault_name         = "keith-eneco-123"
