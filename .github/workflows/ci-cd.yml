@@ -1,3 +1,7 @@
+permissions:
+  id-token: write
+  contents: read
+
 name: "Terraform CI/CD"
 
 on:
@@ -31,6 +35,7 @@ jobs:
           client-id: ${{ secrets.ARM_CLIENT_ID }}
           tenant-id: ${{ secrets.ARM_TENANT_ID }}
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          auth-type: OIDC
 
       - name: Fetch Databricks PAT from Key Vault
         id: get-pat
