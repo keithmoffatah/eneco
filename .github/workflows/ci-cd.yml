@@ -15,10 +15,9 @@ env:
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
 jobs:
-  terraform:
-    name: "Terraform Plan and Apply"
+  infra:
+    name: "Terraform Infra Apply"
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,9 +40,75 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Terraform Plan
+      - name: Terraform Apply (infra only)
+        run: terraform apply -auto-approve -target=module.databricks_workspace_infra -target=module.storage_account -target=azurerm_resource_group.main -var-file="environments/terraform.tfvars"
+
+      - name: Terraform Output
+        id: tfoutput
+        run: |
+          terraform output -json > tf_outputs.json
+
+      - name: Upload Infra Outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: tf_outputs
+          path: tf_outputs.json
+
+  rbac:
+    name: "Terraform RBAC/SPN Apply"
+    needs: infra
+    runs-on: ubuntu-latest
+    environment:
+      name: apply-approval
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.0
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
+      - name: Download Infra Outputs
+        uses: actions/download-artifact@v4
+        with:
+          name: tf_outputs
+
+      - name: Debug Outputs
+        run: cat tf_outputs.json
+
+      - name: Set Databricks Vars from Outputs
+        id: setvars
+        run: |
+          DBR_WS_ID=$(jq -r .databricks_workspace_resource_id.value tf_outputs.json)
+          DBR_HOST=$(jq -r .workspace_url.value tf_outputs.json)
+          echo "databricks_workspace_resource_id=$DBR_WS_ID" >> $GITHUB_ENV
+          echo "databricks_host=$DBR_HOST" >> $GITHUB_ENV
+
+      - name: Debug Databricks Vars
+        run: |
+          echo "databricks_workspace_resource_id=$databricks_workspace_resource_id"
+          echo "databricks_host=$databricks_host"
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan (RBAC/SPN)
         run: terraform plan -var-file="environments/terraform.tfvars"
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
+      - name: Manual Approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ secrets.GITHUB_TOKEN }}
+          approvers: keithmoffat
+          instructions: 'Please review the Terraform plan and approve to proceed with apply.'
+
+      - name: Terraform Apply (RBAC/SPN)
         run: terraform apply -auto-approve -var-file="environments/terraform.tfvars"

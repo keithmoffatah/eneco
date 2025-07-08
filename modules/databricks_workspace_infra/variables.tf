@@ -12,13 +12,3 @@ variable "location" {
   description = "Azure region for resources"
   type        = string
 }
-
-variable "workspace_resource_id" {
-  description = "The Azure resource ID of the Databricks workspace."
-  type        = string
-}
-
-variable "workspace_url" {
-  description = "The URL of the Databricks workspace."
-  type        = string
-}

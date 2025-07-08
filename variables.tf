@@ -38,7 +38,28 @@ variable "data_scientist_users" {
   type        = list(string)
 }
 
+variable "spn_application_id" {
+  description = "The Application (client) ID of the Databricks service principal to be created and assigned as admin."
+  type        = string
+}
+
 variable "subscription_id" {
   description = "Azure Subscription ID"
+  type        = string
+}
+
+// these variable is used for OIDC authentication withim Databricks
+variable "tenant_id" {
+  description = "Azure Tenant ID for OIDC authentication with Databricks."
+  type        = string
+}
+
+variable "databricks_workspace_resource_id" {
+  description = "The Azure resource ID of the Databricks workspace."
+  type        = string
+}
+
+variable "databricks_host" {
+  description = "The URL of the Databricks workspace (e.g., https://adb-xxxx.westeurope.azuredatabricks.net)."
   type        = string
 }

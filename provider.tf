@@ -17,5 +17,8 @@ provider "azurerm" {
 }
 
 provider "databricks" {
-  host = module.databricks_workspace.workspace_url
+  azure_client_id              = var.spn_application_id
+  azure_tenant_id              = var.tenant_id
+  azure_workspace_resource_id  = var.databricks_workspace_resource_id
+  host                        = var.databricks_host
 }

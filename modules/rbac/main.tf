@@ -43,9 +43,9 @@ resource "databricks_group_member" "data_scientists_membership" {
   member_id = each.value.id
 }
 
-data "databricks_service_principal" "spn_eneco" {
-  application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
-}
+# data "databricks_service_principal" "spn_eneco" {
+#   application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
+# }
 
 resource "databricks_service_principal" "spn_eneco" {
   application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
