@@ -42,7 +42,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Apply (infra only)
-        run: terraform apply -auto-approve -target=module.databricks_workspace_infra -target=module.storage_account -target=azurerm_resource_group.main -var-file="environments/terraform.tfvars"
+        run: terraform apply -auto-approve -target=module.databricks_workspace_infra -target=module.storage_account -target=azurerm_resource_group.main -target=module.databricks_workspace.databricks_cluster.shared -var-file="environments/terraform.tfvars"
 
       - name: Terraform Output
         id: tfoutput
