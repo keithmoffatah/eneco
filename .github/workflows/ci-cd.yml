@@ -108,7 +108,6 @@ jobs:
         with:
           secret: ${{ secrets.GITHUB_TOKEN }}
           approvers: keithmoffat
-          instructions: 'Please review the Terraform plan and approve to proceed with apply.'
 
       - name: Terraform Apply (RBAC/SPN)
         run: terraform apply -auto-approve -var-file="environments/terraform.tfvars"
