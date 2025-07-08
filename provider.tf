@@ -16,6 +16,5 @@ provider "azurerm" {
 }
 
 provider "databricks" {
-  host  = module.databricks_workspace.workspace_url
-  token = var.databricks_token
+  host = module.databricks_workspace.workspace_url
 }
