@@ -47,11 +47,11 @@ resource "databricks_group_member" "data_scientists_membership" {
 #   application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
 # }
 
-resource "databricks_service_principal" "spn_eneco" {
-  application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
-  display_name   = "spn-eneco"
-  active         = true
-}
+# resource "databricks_service_principal" "spn_eneco" {
+#   application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
+#   display_name   = "spn-eneco"
+#   active         = true
+# }
 
 resource "databricks_group_member" "spn_admin" {
   group_id  = databricks_group.admins.id
