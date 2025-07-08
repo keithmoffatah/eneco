@@ -48,16 +48,16 @@ module "rbac" {
 
 # --- Databricks Service Principal and Admin Assignment ---
 # The Terraform identity must be a Databricks workspace admin for this to succeed.
-resource "databricks_service_principal" "spn_eneco" {
-  application_id = var.spn_application_id  # Set this in your tfvars or pipeline secrets
-  display_name   = "spn-eneco"
-}
+# resource "databricks_service_principal" "spn_eneco" {
+#   application_id = var.spn_application_id  # Set this in your tfvars or pipeline secrets
+#   display_name   = "spn-eneco"
+# }
 
 # Add the service principal to the workspace admins group
-resource "databricks_group_member" "spn_admin" {
-  group_id  = data.databricks_group.admins.id
-  member_id = databricks_service_principal.spn_eneco.id
-}
+# resource "databricks_group_member" "spn_admin" {
+#   group_id  = data.databricks_group.admins.id
+#   member_id = databricks_service_principal.spn_eneco.id
+# }
 
 # data "databricks_group" "admins" {
 #   display_name = "admins"
