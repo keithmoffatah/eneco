@@ -11,18 +11,23 @@
   #   key                  = "terraform.tfstate"       # or another name if you prefer
   # }
 #}
+// Moved resource group creation to main.tf to ensure it exists before other resources are created.
+resource "azurerm_resource_group" "main" {
+  name     = var.resource_group_name
+  location = var.location
+}
 
 module "databricks_workspace" {
   source              = "./modules/databricks_workspace"
   workspace_name      = var.workspace_name
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.main.name
   location            = var.location
 
 }
 
 module "storage_account" {
   source               = "./modules/storage_account"
-  resource_group_name  = var.resource_group_name
+  resource_group_name  = azurerm_resource_group.main.name
   location             = var.location
   storage_account_name = var.storage_account_name
   container_name       = var.storage_container_name
