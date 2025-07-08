@@ -37,3 +37,8 @@ variable "data_scientist_users" {
   description = "List of data scientist user emails"
   type        = list(string)
 }
+
+variable "subscription_id" {
+  description = "Azure Subscription ID"
+  type        = string
+}
