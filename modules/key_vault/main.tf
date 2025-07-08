@@ -6,9 +6,3 @@ resource "azurerm_key_vault" "this" {
   sku_name                    = "standard"
   purge_protection_enabled    = true
 }
-
-resource "azurerm_key_vault_secret" "databricks_pat" {
-  name         = "databricks-pat"
-  value        = var.databricks_pat
-  key_vault_id = azurerm_key_vault.this.id
-}

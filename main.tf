@@ -17,7 +17,7 @@ module "databricks_workspace" {
   workspace_name      = var.workspace_name
   resource_group_name = var.resource_group_name
   location            = var.location
-  
+
 }
 
 module "storage_account" {
@@ -42,5 +42,4 @@ module "key_vault" {
   location            = var.location
   resource_group_name = var.resource_group_name
   tenant_id           = var.tenant_id
-  databricks_pat      = var.databricks_token
 }

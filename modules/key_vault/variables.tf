@@ -17,9 +17,3 @@ variable "tenant_id" {
   description = "Azure Tenant ID"
   type        = string
 }
-
-variable "databricks_pat" {
-  description = "Databricks Personal Access Token to store in Key Vault"
-  type        = string
-  sensitive   = true
-}

@@ -39,7 +39,7 @@ Teams can run workloads, share data and models, and follow RBAC best practices â
   - `ARM_CLIENT_SECRET`
   - `ARM_SUBSCRIPTION_ID`
   - `ARM_TENANT_ID`
-  - `DATABRICKS_TOKEN`
+  - `DATABRICKS_TOKEN` (no longer required for OIDC auth)
 
 ---
 

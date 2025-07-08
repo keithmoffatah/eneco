@@ -38,12 +38,6 @@ variable "data_scientist_users" {
   type        = list(string)
 }
 
-variable "databricks_token" {
-  description = "Personal access token for Databricks API"
-  type        = string
-  sensitive   = true
-}
-
 variable "key_vault_name" {
   description = "Name of the Azure Key Vault to create"
   type        = string
