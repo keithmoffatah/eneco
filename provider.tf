@@ -21,5 +21,5 @@ provider "databricks" {
   azure_client_id              = var.spn_application_id
   azure_tenant_id              = var.tenant_id
   azure_workspace_resource_id  = var.databricks_workspace_resource_id
-  host                        = var.databricks_host
+  host                         = module.databricks_workspace_infra.workspace_url
 }
