@@ -54,13 +54,13 @@ jobs:
       - name: Terraform Plan
         env:
           TF_VAR_databricks_token: ${{ env.DATABRICKS_PAT }}
-        run: terraform plan -var-file="terraform.tfvars"
+        run: terraform plan -var-file="environments/terraform.tfvars"
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         env:
           TF_VAR_databricks_token: ${{ env.DATABRICKS_PAT }}
-        run: terraform apply -auto-approve -var-file="terraform.tfvars"
+        run: terraform apply -auto-approve -var-file="environments/terraform.tfvars"
 
 # Add KEY_VAULT_NAME to the required secrets in your repo settings for this workflow to work.
 # Example: KEY_VAULT_NAME: my-keyvault-name
