@@ -53,6 +53,7 @@ resource "databricks_group_member" "spn_admin" {
 }
 
 resource "databricks_permissions" "cluster_access" {
+  count      = var.cluster_id != "" ? 1 : 0
   cluster_id = var.cluster_id
 
   access_control {
