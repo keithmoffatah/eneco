@@ -35,11 +35,3 @@ module "rbac" {
   data_scientist_users = var.data_scientist_users
   cluster_id           = module.databricks_workspace.cluster_id  # if you output it
 }
-
-module "key_vault" {
-  source              = "./modules/key_vault"
-  key_vault_name      = var.key_vault_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  tenant_id           = var.tenant_id
-}

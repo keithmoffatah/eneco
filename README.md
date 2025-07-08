@@ -23,7 +23,6 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 | `databricks_workspace/` | Creates Azure resource group, Databricks workspace, shared cluster |
 | `storage_account/`      | Provisions ADLS Gen2 for team data & model sharing            |
 | `rbac/`                 | Defines Databricks groups, adds users, and sets cluster permissions |
-| `key_vault/`           | Provisions Azure Key Vault and stores Databricks PAT securely         |
 
 ---
 
@@ -95,30 +94,9 @@ Secrets management for CI/CD to avoid accidental leaks.
 
 ---
 
-## 🔐 Key Vault Integration (Secrets Management)
+## 🔄 Rotating the Databricks PAT
 
-This project uses **Azure Key Vault** to securely store the Databricks Personal Access Token (PAT):
-
-- A Key Vault is provisioned automatically via the `key_vault` module.
-- The Databricks PAT is stored as a secret named `databricks-pat` in the Key Vault.
-- The CI/CD pipeline fetches the PAT from Key Vault at runtime and injects it into Terraform as an environment variable.
-
-### Required GitHub Secrets
-
-- `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`: Azure service principal credentials (OIDC, no client secret needed)
-- `KEY_VAULT_NAME`: The name of the Key Vault created by this project
-
-### How to Use with Key Vault
-
-1. Set your Databricks PAT in your `terraform.tfvars` or as a variable when running Terraform locally. It will be uploaded to Key Vault on first apply.
-2. In CI/CD, the workflow will automatically fetch the PAT from Key Vault using the `KEY_VAULT_NAME` secret.
-3. No PAT is stored in the repository or in GitHub secrets.
-
----
-
-## 🔄 Rotating the Databricks PAT in Key Vault
-
-For security, it is recommended to rotate the Databricks Personal Access Token (PAT) stored in Azure Key Vault every 45 days. Here’s how to do it:
+For security, it is recommended to rotate the Databricks Personal Access Token (PAT) every 45 days. Here’s how to do it:
 
 ### 1. Generate a New Databricks PAT
 - Log in to your Databricks workspace.

@@ -13,7 +13,7 @@ resource "azurerm_databricks_workspace" "main" {
 resource "databricks_cluster" "shared" {
   cluster_name            = "Shared-Cluster"
   spark_version           = "13.3.x-scala2.12"
-  node_type_id            = "Standard_DS3_v2"
+  node_type_id            = "Standard_DS2_v2"
   autotermination_minutes = 60
-  num_workers             = 2
+  num_workers             = 1
 }

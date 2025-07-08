@@ -7,7 +7,3 @@ storage_container_name = "team-data"
 admin_users            = ["admin1@example.com"]
 data_engineer_users    = ["de1@example.com", "de2@example.com"]
 data_scientist_users   = ["ds1@example.com"]
-
-# databricks_token is not needed for OIDC auth
-key_vault_name         = "keith-eneco-123"
-tenant_id              = "9c27bd1f-0a00-494d-ac12-70555bcb3b00"
