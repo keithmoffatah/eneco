@@ -87,12 +87,10 @@ Secrets management for CI/CD to avoid accidental leaks.
      ```
    - Benefits: Centralized, scalable data governance; least-privilege access for sensitive data; easier compliance with regulatory requirements.
 2. CI/CD Enhancements:
-   - Add a manual approval step before terraform apply in production
    - Separate plan and apply jobs for better control
    - Add notifications (Slack, Teams) for pipeline status
 3. Security & Compliance Enhancements:
    - Add private networking and secure workspace access (private endpoints, firewall rules for Databricks and storage). If cost is an issue for private endpoints, use service endpoints with whitelisting
-   - Integrate with Entra ID for federated identity and RBAC (use Entra ID groups for access, federated credentials for automation)
    - Add automated infrastructure security scanning and compliance checks (For ex: SonarQube, Checkov, tfsec)
 
 ---
