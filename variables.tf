@@ -38,11 +38,6 @@ variable "data_scientist_users" {
   type        = list(string)
 }
 
-variable "key_vault_name" {
-  description = "Name of the Azure Key Vault to create"
-  type        = string
-}
-
 variable "tenant_id" {
   description = "Azure Tenant ID for Key Vault access"
   type        = string

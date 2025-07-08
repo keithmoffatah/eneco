@@ -47,6 +47,3 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve -var-file="environments/terraform.tfvars"
-
-# Add KEY_VAULT_NAME to the required secrets in your repo settings for this workflow to work.
-# Example: KEY_VAULT_NAME: my-keyvault-name
