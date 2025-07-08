@@ -44,6 +44,7 @@ module "rbac" {
   data_engineer_users  = var.data_engineer_users
   data_scientist_users = var.data_scientist_users
   cluster_id           = module.databricks_workspace.cluster_id
+  spn_application_id   = var.spn_application_id
 }
 
 # --- Databricks Service Principal and Admin Assignment ---

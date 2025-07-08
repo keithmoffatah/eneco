@@ -17,3 +17,8 @@ variable "cluster_id" {
   description = "ID of the Databricks cluster to manage permissions"
   type        = string
 }
+
+variable "spn_application_id" {
+  description = "The Application (client) ID of the Databricks service principal."
+  type        = string
+}
