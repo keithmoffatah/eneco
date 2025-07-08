@@ -19,9 +19,3 @@ You are tasked with creating a Databricks workspace for a large energy company. 
 
 - All infrastructure provisioning and configuration must be automated through Terraform.
 - Git repository containing the code, CI/CD pipeline, README file. Archive and send it over email.
-
-
-
-THINGS TO LEARN Better:
-
-RBAC, federated creds
