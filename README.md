@@ -40,6 +40,7 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 
 **Note:**
 - If you want to add an external user (e.g., a Gmail address) to Databricks, you must first invite them as a guest user in your Azure Active Directory tenant. Go to Azure Portal → Azure Active Directory → Users → New guest user, enter their email, and send the invitation. The user must accept the invitation before they can sign in to Databricks.
+- After the invitation is accepted, add their email to the appropriate group (e.g., `admin_users`, `data_engineer_users`, or `data_scientist_users`) in your `terraform.tfvars` file. This ensures they are assigned to the correct Databricks group on the next Terraform apply.
 - Databricks Personal Access Token (PAT) and Azure Key Vault are not required for authentication; OIDC (federated credentials) is used for secure automation.
 
 ---
