@@ -1,3 +1,6 @@
+# This storage account is provisioned as Azure Data Lake Storage Gen2 (is_hns_enabled = true).
+# It provides a shared data lake for all teams to store and share data and models securely.
+# The default container is created for team collaboration and can be extended for more granular access if needed.
 resource "azurerm_storage_account" "this" {
   name                     = var.storage_account_name
   resource_group_name      = var.resource_group_name

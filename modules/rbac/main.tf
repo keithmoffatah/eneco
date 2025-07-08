@@ -1,3 +1,7 @@
+# RBAC module: Defines Databricks user groups, assigns users to groups, and manages cluster permissions.
+# This enables secure, role-based access control for multiple teams in the Databricks workspace.
+# Admins, data engineers, and data scientists are managed via variables and assigned to their respective groups.
+
 resource "databricks_group" "admins" {
   display_name = "Admins"
 }

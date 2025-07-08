@@ -1,3 +1,6 @@
+# This module manages Databricks API resources such as clusters.
+# It is designed to be used after the workspace infrastructure is provisioned, and can be extended for jobs, notebooks, and other Databricks resources.
+
 resource "databricks_cluster" "shared" {
   count                   = 0 # Set to 1+ when clusters are allowed
   cluster_name            = "Shared-Cluster"
