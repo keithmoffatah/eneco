@@ -1,12 +1,12 @@
 # The following backend "azurerm" block configures remote state storage in Azure Blob Storage.
-# terraform {
-#   backend "azurerm" {
-#     resource_group_name  = "rg-terraformstate"   # e.g. "my-tfstate-rg"
-#     storage_account_name = "keithsterraformstate"  # e.g. "mystatestorageacct"
-#     container_name       = "keithsterraformstate"        # e.g. "tfstate"
-#     key                  = "terraform.tfstate"       # or another name if you prefer
-#   }
-# }
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "rg-terraformstate"   # e.g. "my-tfstate-rg"
+    storage_account_name = "keithsterraformstate"  # e.g. "mystatestorageacct"
+    container_name       = "keithsterraformstate"        # e.g. "tfstate"
+    key                  = "terraform.tfstate"       # or another name if you prefer
+  }
+}
 
 // Moved resource group creation to main.tf to ensure it exists before other resources are created.
 resource "azurerm_resource_group" "main" {
