@@ -1,6 +1,6 @@
 workspace_name         = "prod-databricks-workspace"
 resource_group_name    = "rg-databricks"
-location               = "weeeu"
+location               = "westeurope"
 storage_account_name   = "prodsa123456"
 storage_container_name = "team-data"
 
