@@ -14,6 +14,7 @@ terraform {
 provider "azurerm" {
   features {}
   subscription_id = var.subscription_id
+  # Do not set use_azure_cli or any SP-specific auth here; rely on environment variables in CI/CD, and az login locally.
 }
 
 provider "databricks" {
