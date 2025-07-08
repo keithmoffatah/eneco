@@ -43,15 +43,13 @@ resource "databricks_group_member" "data_scientists_membership" {
   member_id = each.value.id
 }
 
-resource "databricks_service_principal" "spn_eneco" {
+data "databricks_service_principal" "spn_eneco" {
   application_id = "c28fa970-4a8d-4802-8e81-80ecdfaaed74"
-  display_name   = "spn-eneco"
-  active         = true
 }
 
 resource "databricks_group_member" "spn_admin" {
   group_id  = databricks_group.admins.id
-  member_id = databricks_service_principal.spn_eneco.id
+  member_id = data.databricks_service_principal.spn_eneco.id
 }
 
 resource "databricks_permissions" "cluster_access" {
