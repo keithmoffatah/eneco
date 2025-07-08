@@ -9,10 +9,10 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 
 **What’s included:**
 
-✅ **Databricks Workspace** — Premium SKU workspace for multiple teams
-✅ **Storage Account** — Azure Data Lake Storage Gen2 for shared data/models
-✅ **RBAC** — Databricks user groups, memberships, and cluster permissions
-✅ **CI/CD** — Automated deploys with `terraform plan` and `apply` on `main` branch
+- ✅ **Databricks Workspace** — Premium SKU workspace for multiple teams
+- ✅ **Storage Account** — Azure Data Lake Storage Gen2 for shared data/models
+- ✅ **RBAC** — Databricks user groups, memberships, and cluster permissions
+- ✅ **CI/CD** — Automated deploys with `terraform plan` and `apply` on `main` branch
 
 ---
 
