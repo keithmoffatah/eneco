@@ -32,13 +32,15 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 
 - Terraform >= 1.5.0
 - Azure subscription (`az login` configured)
-- Databricks Personal Access Token (PAT)
 - GitHub repository with encrypted secrets:
   - `ARM_CLIENT_ID`
   - `ARM_CLIENT_SECRET`
   - `ARM_SUBSCRIPTION_ID`
   - `ARM_TENANT_ID`
-  - `DATABRICKS_TOKEN` (no longer required for OIDC auth)
+
+**Note:**
+- If you want to add an external user (e.g., a Gmail address) to Databricks, you must first invite them as a guest user in your Azure Active Directory tenant. Go to Azure Portal → Azure Active Directory → Users → New guest user, enter their email, and send the invitation. The user must accept the invitation before they can sign in to Databricks.
+- Databricks Personal Access Token (PAT) and Azure Key Vault are not required for authentication; OIDC (federated credentials) is used for secure automation.
 
 ---
 
@@ -58,7 +60,7 @@ Each user must exist in Azure Active Directory before being assigned to a group.
 🚧 Challenges
 
 Chaining outputs between modules for workspace URL and cluster IDs.
-Managing provider auth for Databricks API via PAT securely.
+Managing provider auth for Databricks API via OIDC securely.
 Secrets management for CI/CD to avoid accidental leaks.
 
 ### 🔭 Future Improvements
@@ -91,35 +93,5 @@ Secrets management for CI/CD to avoid accidental leaks.
    - Add private networking and secure workspace access (private endpoints, firewall rules for Databricks and storage). If cost is an issue for private endpoints, use service endpoints with whitelisting
    - Integrate with Entra ID for federated identity and RBAC (use Entra ID groups for access, federated credentials for automation)
    - Add automated infrastructure security scanning and compliance checks (For ex: SonarQube, Checkov, tfsec)
-
----
-
-## 🔄 Rotating the Databricks PAT
-
-For security, it is recommended to rotate the Databricks Personal Access Token (PAT) every 45 days. Here’s how to do it:
-
-### 1. Generate a New Databricks PAT
-- Log in to your Databricks workspace.
-- Go to User Settings > Access Tokens.
-- Generate a new token and copy it.
-
-### 2. Update the Secret in Azure Key Vault
-- Use the Azure CLI or Azure Portal to update the secret:
-
-**Azure CLI:**
-```sh
-az keyvault secret set \
-  --vault-name <KEY_VAULT_NAME> \
-  --name databricks-pat \
-  --value <NEW_PAT_VALUE>
-```
-
-### 3. (Optional) Re-run CI/CD Pipeline
-- The next pipeline run will automatically use the new PAT from Key Vault.
-
-### 4. Remove Old/Expired PATs in Databricks
-- Delete any old or expired tokens from your Databricks user settings.
-
-**Tip:** Set a calendar reminder or use Azure Key Vault’s built-in expiration and notification features to remind you to rotate the PAT every 45 days.
 
 ---
