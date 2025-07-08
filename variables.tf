@@ -37,8 +37,3 @@ variable "data_scientist_users" {
   description = "List of data scientist user emails"
   type        = list(string)
 }
-
-variable "tenant_id" {
-  description = "Azure Tenant ID for Key Vault access"
-  type        = string
-}
