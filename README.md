@@ -44,14 +44,14 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 - Databricks Personal Access Token (PAT) and Azure Key Vault are not required for authentication; OIDC (federated credentials) is used for secure automation.
 
 ---
+### 2️⃣ Add email to tfvars & run Pipeline
 
-### 2️⃣ Run Locally
+Add your email to the appropriate group in terraform.tfvars
+Commit changes
+Navigate to https://github.com/keithmoffatah/eneco/actions/
+Go to the "Terraform Apply (RBAC/SPN)" Step
+Look for the workspace_url output and go to https://adb-xxxxxx.xx.azuredatabricks.net
 
-```bash
-terraform init
-terraform plan -var-file="terraform.tfvars"
-terraform apply -var-file="terraform.tfvars"
-```
 
 ### 🗒️ Assumptions
 
