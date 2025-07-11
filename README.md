@@ -12,7 +12,7 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 - ✅ **Databricks Workspace** — Premium SKU workspace for multiple teams
 - ✅ **Storage Account** — Azure Data Lake Storage Gen2 for shared data/models
 - ✅ **RBAC** — Databricks user groups, memberships, and cluster permissions
-- ✅ **CI/CD** — Automated deploys with `terraform plan` and `apply` on `main` branch
+- ✅ **CI/CD** — Automated deploys with Terraform CI/CD workflow
 
 ---
 
@@ -28,20 +28,9 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 
 ## ⚙️ How to Use
 
-### 1️⃣ Pre-requisites
-
-- Terraform >= 1.5.0
-- Azure subscription (`az login` configured)
-- GitHub repository with encrypted secrets:
-  - `ARM_CLIENT_ID`
-  - `ARM_CLIENT_SECRET`
-  - `ARM_SUBSCRIPTION_ID`
-  - `ARM_TENANT_ID`
-
 **Note:**
-- If you want to add an external user (e.g., a Gmail address) to Databricks, you must first invite them as a guest user in your Azure Active Directory tenant. Go to Azure Portal → Azure Active Directory → Users → New guest user, enter their email, and send the invitation. The user must accept the invitation before they can sign in to Databricks.
-- After the invitation is accepted, add their email to the appropriate group (e.g., `admin_users`, `data_engineer_users`, or `data_scientist_users`) in your `terraform.tfvars` file. This ensures they are assigned to the correct Databricks group on the next Terraform apply.
-- Databricks Personal Access Token (PAT) and Azure Key Vault are not required for authentication; OIDC (federated credentials) is used for secure automation.
+- If you want to add an external user (e.g., a Gmail address) to Databricks, you must first be invited as a guest user in the Azure Active Directory tenant. Send me your email and I will go to the Azure Portal → Azure Active Directory → Users → New guest user, enter your email, and send the invitation. You must accept the invitation before you can sign in to Databricks.
+- After the invitation is accepted, add your email to the appropriate group (e.g., `admin_users`, `data_engineer_users`, or `data_scientist_users`) in the `terraform.tfvars` file. This ensures they are assigned to the correct Databricks group on the next Terraform apply.
 
 ---
 ### 2️⃣ Add email to tfvars & run Pipeline
