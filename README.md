@@ -35,11 +35,11 @@ Teams can run workloads, share data and models, and follow RBAC best practices �
 ---
 ### 2️⃣ Add email to tfvars & run Pipeline
 
-Add your email to the appropriate group in terraform.tfvars
-Commit changes
-Navigate to https://github.com/keithmoffatah/eneco/actions/
-Go to the "Terraform Apply (RBAC/SPN)" Step
-Look for the workspace_url output and go to https://adb-xxxxxx.xx.azuredatabricks.net
+- Add your email to the appropriate group in terraform.tfvars
+- Commit changes
+- Navigate to https://github.com/keithmoffatah/eneco/actions/
+- Go to the "Terraform Apply (RBAC/SPN)" Step
+- Look for the workspace_url output and go to https://adb-xxxxxx.xx.azuredatabricks.net
 
 
 ### 🗒️ Assumptions
